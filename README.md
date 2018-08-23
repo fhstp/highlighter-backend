@@ -26,7 +26,7 @@ siehe package.json):
 
         -   Viele Text-Mining Methoden bereits implementiert
 
-        -   Text Cleaner, Weighting
+        -   Text Cleaner, Weighting, Corpus Erstellung
 
 NodeJS Einrichtung
 
