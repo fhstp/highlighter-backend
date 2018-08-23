@@ -52,4 +52,4 @@ Endpoints
 
 - Übergeben werden müssen im Body:
     -   text -> Die zu prozessierende AGB
-    -   search -> Ein Array aus Begriffen nach denen im Text gesucht werden sollen.
+    -   search -> Ein Array aus Begriffen nach denen im Text gesucht werden soll.
