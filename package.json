@@ -1,0 +1,26 @@
+{
+  "name": "highlighter_Backend",
+  "version": "0.0.1",
+  "main": "dir/index",
+  "types": "dir/index",
+  "scripts": {
+    "tsc": "tsc",
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.24",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.7.2",
+    "typescript-eslint-parser": "^6.0.1"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.16.8",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "text-miner": "^1.0.5",
+    "tslint": "^5.9.1"
+  }
+}

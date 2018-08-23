@@ -1,0 +1,6 @@
+node_modules/
+.idea/
+.env
+.pem
+ssl/online.domain.com-cert.pem
+ssl/online.domain.com-key.pem
