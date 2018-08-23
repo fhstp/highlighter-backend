@@ -2,41 +2,22 @@
  * @author Armin Kirchknopf mt151045
  * @description Der AGBController behinhaltet alle Methoden die Daten zur AGB, sei es Eingabe oder Verarbeitung oder Ausgabe behandelt. 
  */
-import { Connection } from '../database';
 import { Match } from './classes/index'
 import { text } from 'body-parser';
 
 export class AGBController {
-         private _database: Connection;
          private tm = require('text-miner');
 
-         constructor() {
-           this._database = Connection.getInstance();
+         constructor() {          
          }
+
          /**
-          * 
-          @description retourniert alle gefunden AGB's
-          */
-         public findAllAGB(req: any, res: any): void {
-           this._database.agb
-             .findAll()
-             .then(agb => {
-               res.status(200).json(agb);
-             })
-             .catch(err => {
-               res.status(400).json(err);
-             });
-         }
-         /**
-          * @description insertet die übermittelte AGB und prozessiert sie und gibt mehrere prozessierte Datenstrukturen zurück ans Frontend
+          * @description prozessiert die übermittelten AGB's.
           */
          public createAGB(req: any, res: any): void {
-           this._database.agb
-             .create({ text: req.body.text })
-             .then(agb => {
-               //console.log(req.body.text);
+
                let corpus = new this.tm.Corpus([]);
-               corpus.addDoc(agb.dataValues.text);
+               corpus.addDoc(req.body.text);
 
                let vocab_unfiltered: Array<string> = new this.tm.Terms(corpus).vocabulary;
                // Falls am Anfang oder Ende des Doks Whitespaces sind -> weg
@@ -110,11 +91,8 @@ export class AGBController {
 
                console.log(process_agb);
                res.status(201).json(process_agb);
-             })
-             .catch(err => {
-               res.status(400).json(err);
-             });
-         }
+             }
+         
 
          /**************    HELPER METHODS  ************************************************/
 

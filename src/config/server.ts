@@ -10,7 +10,7 @@ import * as bodyParser from 'body-parser';
 
 require('dotenv').config();
 import { AGBRestController } from '../rest';
-import { TreeRestController } from '../rest';
+//import { TreeRestController } from '../rest';
 
 export default class Server
 {
@@ -26,7 +26,7 @@ export default class Server
 
     // Controllers
     private _agbRestController: AGBRestController;
-    private _treeRestController: TreeRestController;
+    //private _treeRestController: TreeRestController;
 
     constructor()
     {
