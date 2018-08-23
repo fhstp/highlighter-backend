@@ -45,3 +45,11 @@ NodeJS Einrichtung
     kopieren oder verlinken.
 
 -   „npm start“ ausführen.
+
+Endpoints
+
+-   https://url/agb -> url ist die Domain des betreffenden Servers!
+
+- Übergeben werden müssen im Body:
+    -   text -> Die zu prozessierende AGB
+    -   search -> Ein Array aus Begriffen nach denen im Text gesucht werden sollen.
