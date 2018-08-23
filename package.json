@@ -1,5 +1,5 @@
 {
-  "name": "contractviz_Backend",
+  "name": "highlighter_Backend",
   "version": "0.0.1",
   "main": "dir/index",
   "types": "dir/index",
@@ -20,9 +20,6 @@
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
-    "mysql2": "^1.4.2",
-    "sequelize": "^4.7.3",
-    "sqlite3": "^3.1.13",
     "text-miner": "^1.0.5",
     "tslint": "^5.9.1"
   }

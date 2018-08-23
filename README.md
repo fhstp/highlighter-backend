@@ -20,15 +20,6 @@ Server Voraussetzungen:
 NPM Packages (nur projektspezifische Packages werden erklärt, für alle anderen
 siehe package.json):
 
--   Sequelize \> 4.7.3
-
-    -   <http://docs.sequelizejs.com/> -\> ORM Mapper
-
-        -   Vorteile: Datenbank kann komplett vom Backend erstellt und
-            bearbeitet werden
-
-            -   Relations können einfacher definiert und eingehalten werden.
-
 -   Text-miner -\> 1.0.5
 
     -   <https://github.com/Planeshifter/text-miner>
@@ -49,12 +40,6 @@ NodeJS Einrichtung
     entsprechend ausfüllen:
 
     -   SERVER_PORT = XXXX
-
-    -   DB_USER = XXXX
-
-    -   DB_PASSWORD = XXXX
-
-    -   DB_NAME = XXXX
 
 -   In den Ordner ssl die benötigten SSL Zertifikate cert.pem und key.pem
     kopieren oder verlinken.
