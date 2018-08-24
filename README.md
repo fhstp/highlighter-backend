@@ -24,9 +24,9 @@ siehe package.json):
 
     -   <https://github.com/Planeshifter/text-miner>
 
-        -   Viele Text-Mining Methoden bereits implementiert
+        -   Viele Text-Mining Methoden bereits implementiert.
 
-        -   Text Cleaner, Weighting, Corpus Erstellung
+        -   Text Cleaner, Weighting, Corpus Erstellung.
 
 NodeJS Einrichtung
 
