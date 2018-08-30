@@ -18,55 +18,57 @@ export class AGBController {
 
                let corpus = new this.tm.Corpus([]);
                corpus.addDoc(req.body.text);
+               //console.log("tm: ", req.body.text);
 
-               let vocab_unfiltered: Array<string> = new this.tm.Terms(corpus).vocabulary;
+               let vocab_unfiltered: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
+              // console.log(vocab_unfiltered);
                // Falls am Anfang oder Ende des Doks Whitespaces sind -> weg
-               corpus.trim();
+              // corpus.trim();
                // Alle unnötigen Whitespaces weg.
-               corpus.clean();
+              // corpus.clean();
                // Alle unnötigen \n weg -> eventuell drinnen lassen ? Wegen leichtere Anzeige danach am Frontend?
-               corpus.removeNewlines();
+              // corpus.removeNewlines();
                // alle nicht Unicode Zeichen weg
-               corpus.removeInvalidCharacters();
+              // corpus.removeInvalidCharacters();
                //alle Interpunctuation weg
-               corpus.removeInterpunctuation();
+              // corpus.removeInterpunctuation();
                //console.log(vocab_unfiltered)
-               let withStopWords10MostFrequentTerms = new this.tm.Terms(corpus).findFreqTerms(10);
-               let withStopWords20MostFrequentTerms = new this.tm.Terms(corpus).findFreqTerms(20);
-               let withStopWords30MostFrequentTerms = new this.tm.Terms(corpus).findFreqTerms(30);
-               let vocabulary_filtered = new this.tm.Terms(corpus).vocabulary;
-               //let process_agb = Array();
-               let process_agb: { [id: string]: any } = {};
+              //  let withStopWords10MostFrequentTerms =  new this.tm.DocumentTermMatrix(corpus).findFreqTerms(10);
+              //  let withStopWords20MostFrequentTerms =  new this.tm.DocumentTermMatrix(corpus).findFreqTerms(20);
+              //  let withStopWords30MostFrequentTerms =  new this.tm.DocumentTermMatrix(corpus).findFreqTerms(30);
+              //  let vocabulary_filtered = new this.tm.DocumentTermMatrix(corpus).vocabulary;
+              //  //let process_agb = Array();
+                let process_agb: { [id: string]: any } = {};
 
-               process_agb['corpus'] = corpus;
+                process_agb['corpus'] = corpus;
 
-               //Und das Ganze ohne Stopwörter
-               let corpusWithoutStopwords = corpus.removeWords(this.tm.STOPWORDS.DE);
-               let vocabWithoutStopwords = new this.tm.Terms(corpusWithoutStopwords).vocabulary;
+              //  //Und das Ganze ohne Stopwörter
+              //  let corpusWithoutStopwords = corpus.removeWords(this.tm.STOPWORDS.DE);
+              //  let vocabWithoutStopwords = new this.tm.DocumentTermMatrix(corpusWithoutStopwords).vocabulary;
 
-               // Alle Wörter in Array mit und ohne Sonderzeichen, Filtering usw.
-               process_agb['vocab_unfiltered'] = vocab_unfiltered;
-               process_agb['vocabulary_filtered'] = vocabulary_filtered;
-               process_agb['vocabulary_Without_Stopwords'] = vocabWithoutStopwords;
+              //  // Alle Wörter in Array mit und ohne Sonderzeichen, Filtering usw.
+              //  process_agb['vocab_unfiltered'] = vocab_unfiltered;
+              //  process_agb['vocabulary_filtered'] = vocabulary_filtered;
+              //  process_agb['vocabulary_Without_Stopwords'] = vocabWithoutStopwords;
 
-               // Nach Häufigkeiten 10, 20, und 30 häufigst vorkommenden Wörtern mit Stopwörtern
-               process_agb['10_and_more_freq_terms_with_Stopwords'] = withStopWords10MostFrequentTerms;
-               process_agb['20_and_more_freq_terms_with_Stopwords'] = withStopWords20MostFrequentTerms;
-               process_agb['30_and_more_freq_terms_with_Stopwords'] = withStopWords30MostFrequentTerms;
+              //  // Nach Häufigkeiten 10, 20, und 30 häufigst vorkommenden Wörtern mit Stopwörtern
+              //  process_agb['10_and_more_freq_terms_with_Stopwords'] = withStopWords10MostFrequentTerms;
+              //  process_agb['20_and_more_freq_terms_with_Stopwords'] = withStopWords20MostFrequentTerms;
+              //  process_agb['30_and_more_freq_terms_with_Stopwords'] = withStopWords30MostFrequentTerms;
 
-               // Nach Häufigkeiten 10, 20, und 30 häufigst vorkommenden Wörtern ohne Stopwörtern
+              //  // Nach Häufigkeiten 10, 20, und 30 häufigst vorkommenden Wörtern ohne Stopwörtern
 
-               let withoutStopWords10MostFrequentTerms = new this.tm.Terms(corpusWithoutStopwords).findFreqTerms(10);
-               let withoutStopWords20MostFrequentTerms = new this.tm.Terms(corpusWithoutStopwords).findFreqTerms(20);
-               let withoutStopWords30MostFrequentTerms = new this.tm.Terms(corpusWithoutStopwords).findFreqTerms(30);
+              //  let withoutStopWords10MostFrequentTerms = new this.tm.DocumentTermMatrix(corpusWithoutStopwords).findFreqTerms(10);
+              //  let withoutStopWords20MostFrequentTerms = new this.tm.DocumentTermMatrix(corpusWithoutStopwords).findFreqTerms(20);
+              //  let withoutStopWords30MostFrequentTerms = new this.tm.DocumentTermMatrix(corpusWithoutStopwords).findFreqTerms(30);
 
-               process_agb['10_and_more_freq_terms_without_Stopwords'] = withoutStopWords10MostFrequentTerms;
-               process_agb['20_and_more_freq_terms_without_Stopwords'] = withoutStopWords20MostFrequentTerms;
-               process_agb['30_and_more_freq_terms_without_Stopwords'] = withoutStopWords30MostFrequentTerms;
+              //  process_agb['10_and_more_freq_terms_without_Stopwords'] = withoutStopWords10MostFrequentTerms;
+              //  process_agb['20_and_more_freq_terms_without_Stopwords'] = withoutStopWords20MostFrequentTerms;
+              //  process_agb['30_and_more_freq_terms_without_Stopwords'] = withoutStopWords30MostFrequentTerms;
 
                // Sucht mal nach den Terms in den AGB's
                // Splitten den übergebenen Suchstring auf
-                console.log(req.body.search);
+                //console.log(req.body.search);
                let searchTerms = Array<string>();
                searchTerms = req.body.search;
                let foundSearchTerms = Array();
@@ -78,7 +80,7 @@ export class AGBController {
                process_agb['found_occurences'] = foundSearchTerms;
 
                // Markup einfügen
-               let markupString: Array<string> = new this.tm.Terms(corpus).vocabulary;
+               let markupString: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
 
                for (let term of foundSearchTerms) {
                  for (let match of term) {
