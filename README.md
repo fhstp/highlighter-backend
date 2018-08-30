@@ -1,5 +1,23 @@
-Readme Backend Installation von ContractViz 
-============================================
+# ![HighLighter](https://github.com/fhstp/highlighter-webextension/raw/master/app/images/Logo_contractVis.png) Backend
+
+Buying a product or signing up for a service implicates a contract between the consumer and the merchant or provider.
+The average web user is often worried about the possible consequences from such a contract.
+They are worried in particular when they interact with a new web shop or when the general terms and conditions are updated.
+However, each contract involves a multitude of legal text that is hard to read and understand.
+
+**ContractVis HighLighter** provides sophisticated text visualization support for online shopping,
+yet targets non-professional users in a casual context without training.
+
+ContractVis HighLighter consists of three components:
+* a [web extension](https://github.com/fhstp/highlighter-webextension),
+* a [web app](https://github.com/fhstp/highlighter-webapp), and
+* a backend server (this package).
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Tags**: node.js, TypeScript, and Visual Studio Code
+
+## Installation
 
 Server Voraussetzungen:
 
@@ -24,9 +42,9 @@ siehe package.json):
 
     -   <https://github.com/Planeshifter/text-miner>
 
-        -   Viele Text-Mining Methoden bereits implementiert
+        -   Viele Text-Mining Methoden bereits implementiert.
 
-        -   Text Cleaner, Weighting, Corpus Erstellung
+        -   Text Cleaner, Weighting, Corpus Erstellung.
 
 NodeJS Einrichtung
 
@@ -46,10 +64,15 @@ NodeJS Einrichtung
 
 -   „npm start“ ausführen.
 
-Endpoints
+## Endpoints
 
 -   https://url/agb -> url ist die Domain des betreffenden Servers!
 
 - Übergeben werden müssen im Body:
-    -   text -> Die zu prozessierende AGB
+    -   text -> Die zu prozessierende AGB.
     -   search -> Ein Array aus Begriffen nach denen im Text gesucht werden soll.
+
+## Acknowledgments
+
+This work is supported by the [Internet Foundation Austria (IPA)](https://www.netidee.at/)
+via the netidee project [ContractVis](http://contractvis.fhstp.ac.at/) (no. 2116).
