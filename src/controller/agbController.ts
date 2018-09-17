@@ -15,7 +15,8 @@ export class AGBController {
           * @description prozessiert die übermittelten AGB's.
           */
          public createAGB(req: any, res: any): void {
-
+               let link = req.body.link;
+               link = link.trim();
                let corpus = new this.tm.Corpus([]);
                corpus.addDoc(req.body.text);
                
@@ -45,6 +46,7 @@ export class AGBController {
                }
 
                process_agb['markupString'] = markupString;
+               process_agb['link'] = link;
                res.status(201).json(process_agb);
              }
          
