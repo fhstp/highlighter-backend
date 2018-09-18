@@ -20,8 +20,11 @@ export class AGBController {
                let corpus = new this.tm.Corpus([]);
                corpus.addDoc(req.body.text);
                
+               
                let vocab_unfiltered: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
+               console.log(vocab_unfiltered)
                let process_agb: { [id: string]: any } = {};
+               //let vocab_unfiltered = req.body.text.split(' ');
 
                process_agb['corpus'] = corpus;
              
@@ -36,11 +39,12 @@ export class AGBController {
                process_agb['found_occurences'] = foundSearchTerms;
 
                // Markup einfügen
-               let markupString: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
-
+               //let markupString: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
+               let markupString = (req.body.text as string).split(' ');
+               //console.log(markupString)
                for (let term of foundSearchTerms) {
                  for (let match of term) {
-                   // suche und finde den Term in der Vocabliste und setze das markup -> noch einfach Bold tags dran
+                   // suche und finde den Term in der Vocabliste und setze das markup
                    markupString = this.markMatch(match, markupString);
                  }
                }
@@ -59,7 +63,7 @@ export class AGBController {
           * @returns Match[]
           */
          private findMatch(match: string, text: Array<string>): Match[] {
-           let reg = new RegExp(match);
+           let reg = new RegExp(match, 'i'); // i = case insensitiv
            let result = Array<Match>();
            for (let term = 0; term < text.length; term++) {
              if (text[term].match(reg) != null) {
