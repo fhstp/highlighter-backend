@@ -6,7 +6,6 @@ import { Match } from './classes/index'
 import { text } from 'body-parser';
 
 export class AGBController {
-         private tm = require('text-miner');
 
          constructor() {          
          }
@@ -17,17 +16,10 @@ export class AGBController {
          public createAGB(req: any, res: any): void {
                let link = req.body.link;
                link = link.trim();
-               let corpus = new this.tm.Corpus([]);
-               corpus.addDoc(req.body.text);
+               let vocab_unfiltered = (req.body.text as string).split(' ');
                
-               
-               let vocab_unfiltered: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
-               console.log(vocab_unfiltered)
                let process_agb: { [id: string]: any } = {};
-               //let vocab_unfiltered = req.body.text.split(' ');
-
-               process_agb['corpus'] = corpus;
-             
+               
                let searchTerms = Array<string>();
                searchTerms = req.body.search;
                let foundSearchTerms = Array();

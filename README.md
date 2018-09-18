@@ -35,17 +35,6 @@ Server Voraussetzungen:
 
 -   Port Freigabe in der Firewall
 
-NPM Packages (nur projektspezifische Packages werden erklärt, für alle anderen
-siehe package.json):
-
--   Text-miner -\> 1.0.5
-
-    -   <https://github.com/Planeshifter/text-miner>
-
-        -   Viele Text-Mining Methoden bereits implementiert.
-
-        -   Text Cleaner, Weighting, Corpus Erstellung.
-
 NodeJS Einrichtung
 
 -   Nach der Installation kann das Repository in ein Verzeichnis Ihrer Wahl
