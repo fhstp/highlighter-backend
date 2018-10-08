@@ -4,3 +4,4 @@ node_modules/
 .pem
 ssl/online.domain.com-cert.pem
 ssl/online.domain.com-key.pem
+*.pem

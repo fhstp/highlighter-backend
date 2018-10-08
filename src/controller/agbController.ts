@@ -20,9 +20,10 @@ export class AGBController {
                
                let process_agb: { [id: string]: any } = {};
                
-               let searchTerms = Array<string>();
-               searchTerms = req.body.search;
-               let foundSearchTerms = Array();
+               let searchTermsArray = Array<string>();
+               let searchTerms: string;
+               searchTerms =  JSON.parse(req.body.search);
+               let foundSearchTerms = Array();          
 
                for (let i = 0; i < searchTerms.length; i++) {
                  let searchString = searchTerms[i];
