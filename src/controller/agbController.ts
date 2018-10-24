@@ -33,9 +33,7 @@ export class AGBController {
                process_agb['found_occurences'] = foundSearchTerms;
 
                // Markup einfügen
-               //let markupString: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
-               let markupString = (req.body.text as string).split(' ');
-               //console.log(markupString)
+               let markupString = (req.body.text as string).replace(/(?:\r\n|\r|\n)/g, " \n ").split(' ');
                for (let term of foundSearchTerms) {
                  for (let match of term) {
                    // suche und finde den Term in der Vocabliste und setze das markup
