@@ -19,13 +19,13 @@ export class AGBController {
                let vocab_unfiltered = (req.body.text as string).split(' ');
                
                let process_agb: { [id: string]: any } = {};
+
                
-               const searchTermsArray = Array<string>();
-               process_agb['searchTerms'] = searchTermsArray;
                let searchTerms: string;
                searchTerms =  JSON.parse(req.body.search);
-               let foundSearchTerms = Array();          
+               let foundSearchTerms = Array();     
 
+               process_agb['searchTerms'] = searchTerms;
                for (let i = 0; i < searchTerms.length; i++) {
                  let searchString = searchTerms[i];
                  foundSearchTerms.push(this.findMatch(searchString, vocab_unfiltered));
