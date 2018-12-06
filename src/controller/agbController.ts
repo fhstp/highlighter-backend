@@ -82,7 +82,7 @@ export class AGBController {
           * @returns string[]
           */
          private markMatch(todo: Match, text: string[]): string[] {
-           let markup = `<span class='${todo.searchTerm.toLowerCase()}'>${todo.getMatch()}</span>`;
+           let markup = `<span class='fT ${todo.searchTerm.toLowerCase()}'>${todo.getMatch()}</span>`;
            text[todo.getIndex()] = markup;
            return text;
          }
