@@ -3,8 +3,6 @@
  * @description Hier wird die Servererstellung gehandelt. HTTPS, bzw. CORS Handling
  */
 import * as express from 'express';
-import * as fs from 'fs';
-import * as http from 'http';
 import https = require('https');
 import * as bodyParser from 'body-parser';
 
@@ -20,8 +18,8 @@ export default class Server
 
     // SSL intro - Only need on live server and not for local development
     options: any = { 
-    cert: this._fileReader.readFileSync('./ssl/online.domain.com-cert.pem'),
-    key: this._fileReader.readFileSync('./ssl/online.domain.com-key.pem')
+    cert: this._fileReader.readFileSync('../ssl/online.domain.com-cert.pem'),
+    key: this._fileReader.readFileSync('../ssl/online.domain.com-key.pem')
     }
 
     // Controllers
