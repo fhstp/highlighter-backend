@@ -31,8 +31,6 @@ Server Voraussetzungen:
 
 -   HTTPS SSL Zertifikat (lets encrypt oder acme.sh oder aus anderer Quelle)
 
-    -   Benötigt werden: cert.pem und key.pem
-
 -   Port Freigabe in der Firewall
 
 NodeJS Einrichtung
@@ -48,8 +46,9 @@ NodeJS Einrichtung
 
     -   SERVER_PORT = XXXX
 
--   In den Ordner ssl die benötigten SSL Zertifikate cert.pem und key.pem
-    kopieren oder verlinken.
+-   In den Ordner ssl die benötigten SSL Zertifikate kopieren oder verlinken:
+    -   online.domain.com-cert.pem
+    - online.domain.com-key.pem
 
 -   „npm start“ ausführen.
 
