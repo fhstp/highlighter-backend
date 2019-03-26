@@ -16,11 +16,12 @@ export class AGBController {
          public createAGB(req: any, res: any): void {
                let link = req.body.link;
                link = link.trim();
-               let vocab_unfiltered = (req.body.text as string).split(' ');
-               
+
+               // make sure that each line break gets a token
+               const inputTokens = (req.body.text as string).replace(/(?:\r\n|\r|\n)/g, " \n ").split(' ');
+
                let process_agb: { [id: string]: any } = {};
 
-               
                let searchTerms: string;
                searchTerms =  JSON.parse(req.body.search);
                let foundSearchTerms = Array();     
@@ -28,12 +29,12 @@ export class AGBController {
                process_agb['searchTerms'] = searchTerms;
                for (let i = 0; i < searchTerms.length; i++) {
                  let searchString = searchTerms[i];
-                 foundSearchTerms.push(this.findMatch(searchString, vocab_unfiltered));
-               }               
+                 foundSearchTerms.push(this.findMatch(searchString, inputTokens));
+               }
                process_agb['found_occurences'] = foundSearchTerms;
 
                // Markup einfügen
-               let markupString = (req.body.text as string).replace(/(?:\r\n|\r|\n)/g, " \n ").split(' ');
+               let markupString = inputTokens;
                for (let term of foundSearchTerms) {
                  for (let match of term) {
                    // suche und finde den Term in der Vocabliste und setze das markup
