@@ -31,20 +31,7 @@ Server Voraussetzungen:
 
 -   HTTPS SSL Zertifikat (lets encrypt oder acme.sh oder aus anderer Quelle)
 
-    -   Benötigt werden: cert.pem und key.pem
-
 -   Port Freigabe in der Firewall
-
-NPM Packages (nur projektspezifische Packages werden erklärt, für alle anderen
-siehe package.json):
-
--   Text-miner -\> 1.0.5
-
-    -   <https://github.com/Planeshifter/text-miner>
-
-        -   Viele Text-Mining Methoden bereits implementiert.
-
-        -   Text Cleaner, Weighting, Corpus Erstellung.
 
 NodeJS Einrichtung
 
@@ -59,8 +46,9 @@ NodeJS Einrichtung
 
     -   SERVER_PORT = XXXX
 
--   In den Ordner ssl die benötigten SSL Zertifikate cert.pem und key.pem
-    kopieren oder verlinken.
+-   In den Ordner ssl die benötigten SSL Zertifikate kopieren oder verlinken:
+    -   online.domain.com-cert.pem
+    - online.domain.com-key.pem
 
 -   „npm start“ ausführen.
 

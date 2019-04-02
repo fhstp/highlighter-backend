@@ -2,5 +2,7 @@ node_modules/
 .idea/
 .env
 .pem
+build/
 ssl/online.domain.com-cert.pem
 ssl/online.domain.com-key.pem
+*.pem

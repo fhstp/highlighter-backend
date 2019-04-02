@@ -6,7 +6,6 @@ import { Match } from './classes/index'
 import { text } from 'body-parser';
 
 export class AGBController {
-         private tm = require('text-miner');
 
          constructor() {          
          }
@@ -15,36 +14,36 @@ export class AGBController {
           * @description prozessiert die übermittelten AGB's.
           */
          public createAGB(req: any, res: any): void {
+               let link = req.body.link;
+               link = link.trim();
 
-               let corpus = new this.tm.Corpus([]);
-               corpus.addDoc(req.body.text);
-               
-               let vocab_unfiltered: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
+               // make sure that each line break gets a token
+               const inputTokens = (req.body.text as string).replace(/(?:\r\n|\r|\n)/g, " \n ").split(' ');
+
                let process_agb: { [id: string]: any } = {};
 
-               process_agb['corpus'] = corpus;
-             
-               let searchTerms = Array<string>();
-               searchTerms = req.body.search;
-               let foundSearchTerms = Array();
+               let searchTerms: string;
+               searchTerms =  JSON.parse(req.body.search);
+               let foundSearchTerms = Array();     
 
+               process_agb['searchTerms'] = searchTerms;
                for (let i = 0; i < searchTerms.length; i++) {
                  let searchString = searchTerms[i];
-                 foundSearchTerms.push(this.findMatch(searchString, vocab_unfiltered));
-               }               
+                 foundSearchTerms.push(this.findMatch(searchString, inputTokens));
+               }
                process_agb['found_occurences'] = foundSearchTerms;
 
                // Markup einfügen
-               let markupString: Array<string> = new this.tm.DocumentTermMatrix(corpus).vocabulary;
-
+               let markupString = inputTokens;
                for (let term of foundSearchTerms) {
                  for (let match of term) {
-                   // suche und finde den Term in der Vocabliste und setze das markup -> noch einfach Bold tags dran
+                   // suche und finde den Term in der Vocabliste und setze das markup
                    markupString = this.markMatch(match, markupString);
                  }
                }
 
                process_agb['markupString'] = markupString;
+               process_agb['link'] = link;
                res.status(201).json(process_agb);
              }
          
@@ -57,7 +56,7 @@ export class AGBController {
           * @returns Match[]
           */
          private findMatch(match: string, text: Array<string>): Match[] {
-           let reg = new RegExp(match);
+           let reg = new RegExp(match, 'i'); // i = case insensitiv
            let result = Array<Match>();
            for (let term = 0; term < text.length; term++) {
              if (text[term].match(reg) != null) {
